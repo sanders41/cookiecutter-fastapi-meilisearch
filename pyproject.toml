@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "cookiecutter-fastapi-meilisearch"
+version = "0.1.0"
+description = "Cookiecutter template to start a FastAPI project with MeiliSearch built-in"
+authors = ["Paul Sanders <psanders1@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+cookiecutter = "^1.7.3"
+
+[tool.poetry.dev-dependencies]
+black = "^21.11b1"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+pre-commit = "^2.15.0"
+pytest = "^6.2.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.egg
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.nox
+  | \.tox
+  | \.venv
+  | \venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | setup.py
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+src_paths = ["hooks", "tests"]

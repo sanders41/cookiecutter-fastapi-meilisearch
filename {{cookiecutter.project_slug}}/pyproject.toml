@@ -1,0 +1,71 @@
+[tool.poetry]
+name = "cookiecutter-fastapi-meilisearch"
+version = "0.1.0"
+description = "Cookiecutter template to start a FastAPI project with MeiliSearch built in"
+authors = ["Paul Sanders <psanders1@gmail.com>"]
+{% if cookiecutter.license != "No License" -%}
+license = "{{ cookiecutter.license }}"
+{% endif -%}
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^{{ cookiecutter.python_version }}"
+camel-converter = "^1.0.3"
+fastapi = "^0.70.0"
+meilisearch-fastapi = "^0.11.0"
+pydantic = "^1.8.2"
+uvicorn = "^0.15.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.11b1"
+flake8 = "^4.0.1"
+httpx = "^0.21.1"
+isort = "^5.10.1"
+mypy = "^0.910"
+pre-commit = "^2.15.0"
+pytest = "^6.2.5"
+pytest-asyncio = "^0.16.0"
+pytest-cov = "^3.0.0"
+tox = "^3.24.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = {{ cookiecutter.max_line_length }}
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.egg
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.nox
+  | \.tox
+  | \.venv
+  | \venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | setup.py
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = {{ cookiecutter.max_line_length }}
+src_paths = ["app", "tests"]
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov=app"
