@@ -12,9 +12,10 @@ readme = "README.md"
 python = "^{{ cookiecutter.python_version }}"
 camel-converter = "^1.0.3"
 fastapi = "^0.70.0"
+gunicorn = "^20.1.0"
 meilisearch-fastapi = "^0.11.0"
 pydantic = "^1.8.2"
-uvicorn = "^0.15.0"
+uvicorn = {version = "^0.15.0", extras = ["standard"]}
 
 [tool.poetry.dev-dependencies]
 black = "^21.11b1"

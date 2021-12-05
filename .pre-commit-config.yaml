@@ -14,7 +14,7 @@ repos:
     hooks:
     - id: black
       language_version: python3
-      args: [--line-length=100]
+      args: [--config=pyproject.toml, --line-length=100]
   - repo: https://github.com/PyCQA/flake8
     rev: 4.0.1
     hooks:
