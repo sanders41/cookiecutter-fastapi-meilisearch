@@ -7,7 +7,7 @@ Cookiecutter template to start a FastAPI project with MeiliSearch built in.
 
 ## Whats included
 
-- FastAPI project structure
+- FastAPI project structure setup for use with [Poetry](https://python-poetry.org/)
 - Routes built and ready for interacting with MeiliSearch
 - [camel-converter](https://github.com/sanders41/camel-converter) to automatically convert to and
   from camel case when serializing and deserializing data.
