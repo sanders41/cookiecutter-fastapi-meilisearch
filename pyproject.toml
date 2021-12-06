@@ -46,3 +46,7 @@ exclude = '''
 profile = "black"
 line_length = 100
 src_paths = ["hooks", "tests"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "tests"

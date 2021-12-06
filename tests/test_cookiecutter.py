@@ -16,6 +16,7 @@ def project_default():
         "creator": "Some Person",
         "creator_email": "tester@person.com",
         "copyright_year": "2020",
+        "meilisearch_url": "https://localhost:7700",
     }
 
 
@@ -64,6 +65,7 @@ def test_project_directories(project_default, tmp_path):
             "project_slug": "test-project",
             "creator": "Some Person",
             "creator_email": "tester@person.com",
+            "meilisearch_url": "http://localhost",
         },
         {
             "project_name": "Test Project",
@@ -72,6 +74,12 @@ def test_project_directories(project_default, tmp_path):
         {
             "project_name": "Test Project",
             "creator": "Some Person",
+        },
+        {
+            "project_name": "Test Project",
+            "project_slug": "test-project",
+            "creator": "Some Persion",
+            "creator_email": "test@person.com",
         },
     ],
 )
@@ -264,18 +272,42 @@ def test_use_dependabot(project_default, use_dependabot, expected, tmp_path):
 @pytest.mark.parametrize("use_release_drafter, expected", [("yes", True), ("no", False)])
 def test_use_release_drafter(project_default, use_release_drafter, expected, tmp_path):
     project = project_default
-    project_default["use_release_drafter"] = use_release_drafter
+    project["use_release_drafter"] = use_release_drafter
 
     cookiecutter(str(COOKIECUTTER_ROOT), no_input=True, extra_context=project, output_dir=tmp_path)
 
     file_path_action = tmp_path.joinpath(project["project_slug"]).joinpath(
         ".github/workflows/release_drafter.yaml"
     )
-    file_path_action = tmp_path.joinpath(project["project_slug"]).joinpath(
+    file_path_action_template = tmp_path.joinpath(project["project_slug"]).joinpath(
         ".github/release_draft_template.yaml"
     )
 
     if expected:
         assert file_path_action.exists()
+        assert file_path_action_template.exists()
     else:
         assert not file_path_action.exists()
+        assert not file_path_action_template.exists()
+
+
+@pytest.mark.parametrize("api_key", ["test", None])
+def test_meilisearch_api_key(project_default, api_key, tmp_path):
+    project = project_default
+
+    if api_key:
+        project["meilisearch_api_key"] = api_key
+
+    cookiecutter(str(COOKIECUTTER_ROOT), no_input=True, extra_context=project, output_dir=tmp_path)
+
+    env_file = tmp_path / project["project_slug"] / ".env"
+
+    assert env_file.exists()
+
+    with open(env_file, "r") as f:
+        lines = f.readlines()
+
+    if api_key:
+        assert f"MEILISEARCH_API_KEY={api_key}\n" in lines
+    else:
+        assert f"MEILISEARCH_API_KEY={api_key}\n" not in lines
