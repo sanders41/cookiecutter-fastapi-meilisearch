@@ -289,23 +289,3 @@ def test_use_release_drafter(project_default, use_release_drafter, expected, tmp
     else:
         assert not file_path_action.exists()
         assert not file_path_action_template.exists()
-
-
-@pytest.mark.parametrize("api_key", ["test", None])
-def test_meilisearch_api_key(project_default, api_key, tmp_path):
-    project = project_default
-
-    if api_key:
-        project["meilisearch_api_key"] = api_key
-
-    cookiecutter(str(COOKIECUTTER_ROOT), no_input=True, extra_context=project, output_dir=tmp_path)
-
-    env_file = tmp_path / project["project_slug"] / ".env"
-
-    with open(env_file, "r") as f:
-        lines = f.readlines()
-
-    if api_key:
-        assert f"MEILISEARCH_API_KEY={api_key}\n" in lines
-    else:
-        assert f"MEILISEARCH_API_KEY={api_key}\n" not in lines
