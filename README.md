@@ -93,7 +93,7 @@ For Docker build the project
 docker build . -t fastapi-meilisearch
 ```
 
-Then run it with
+Before starting the container make sure MeiliSearch is running. Then run it with:
 
 ```sh
 docker run --rm -p 80:80 fastapi-meilisearch:latest
@@ -105,11 +105,14 @@ For docker-compose build the project
 docker-compose build
 ```
 
-Then start it with
+Then start it with.
 
 ```sh
 docker-compose up
 ```
+
+The docker-compose option will also start a MeiliSearch instance so there is no need to start one
+on your own.
 
 ## Contributing
 
