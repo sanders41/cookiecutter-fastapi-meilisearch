@@ -5,6 +5,28 @@
 
 Cookiecutter template to start a FastAPI project with MeiliSearch built in.
 
+## Whats included
+
+- FastAPI project structure
+- Routes built and ready for interacting with MeiliSearch
+- [camel-converter](https://github.com/sanders41/camel-converter) to automatically convert to and
+  from camel case when serializing and deserializing data.
+- Options for using docker as a stand alone for the project or docker-compose to also start a
+  MeiliSearch server.
+
+## Dev dependencies that are included
+
+- black
+- flake8
+- httpx
+- isort
+- mypy
+- pre-commit
+- pytest
+- pytest-asyncio
+- pytest-cov
+- tox
+
 ## How to use
 
 First make sure you have cookiecutter installed. Instructions for installing can be found [here](https://cookiecutter.readthedocs.io/en/1.7.2/installation.html).
