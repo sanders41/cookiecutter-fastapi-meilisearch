@@ -302,8 +302,6 @@ def test_meilisearch_api_key(project_default, api_key, tmp_path):
 
     env_file = tmp_path / project["project_slug"] / ".env"
 
-    assert env_file.exists()
-
     with open(env_file, "r") as f:
         lines = f.readlines()
 
