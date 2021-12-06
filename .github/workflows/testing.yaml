@@ -6,21 +6,21 @@ on:
     - main
   pull_request:
 jobs:
-  testing:
+   testing:
     strategy:
       fail-fast: false
       matrix:
         python-version: [3.7, 3.8, 3.9, "3.10"]
     runs-on: ubuntu-latest
-    - name: Get full Python version
-      id: full-python-version
-      run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Get full Python version
+      id: full-python-version
+      run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
     - name: Install Poetry and add to path
       run: |
         curl -sSL https://install.python-poetry.org/install-poetry.py | python -
