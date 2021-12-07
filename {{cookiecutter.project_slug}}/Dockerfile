@@ -1,27 +1,30 @@
 FROM python:3.10-slim-bullseye
 
-WORKDIR /app/
+RUN useradd --create-home appuser
+
+WORKDIR /home/appuser
 
 RUN apt-get update && apt-get install curl build-essential -y
 
+EXPOSE 80
+
 # Install Poetry
-RUN curl -sSL https://install.python-poetry.org/install-poetry.py | python - && \
+RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 - && \
   cd /usr/local/bin && \
-  ln -s /root/.local/bin/poetry && \
-  poetry config virtualenvs.create true
+  ln -s /etc/poetry/bin/poetry
 
-RUN poetry run python -m pip install -U pip
-
-COPY ./pyproject.toml ./poetry.lock /app/
-RUN poetry install --no-root --no-dev
-
-COPY ./start.sh .
+COPY ./start.sh ./
 RUN chmod +x ./start.sh
 
-COPY ./gunicorn_conf.py .
+USER appuser
+
+COPY ./gunicorn_conf.py ./
 
 COPY ./app ./app
 
-EXPOSE 80
+COPY ./pyproject.toml ./poetry.lock ./
+
+RUN poetry run python -m pip install -U pip
+RUN poetry install --no-root --no-dev
 
 CMD ["./start.sh"]
