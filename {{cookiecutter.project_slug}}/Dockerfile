@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye
+FROM python:{{ cookiecutter.python_version }}-slim-bullseye
 
 RUN useradd --create-home appuser
 
