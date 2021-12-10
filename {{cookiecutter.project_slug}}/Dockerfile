@@ -4,7 +4,7 @@ RUN useradd --create-home appuser
 
 WORKDIR /home/appuser
 
-RUN apt-get update && apt-get install curl build-essential -y
+RUN apt-get update && apt-get install --no-install-recommends curl build-essential -y
 
 EXPOSE 80
 
