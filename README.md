@@ -39,21 +39,21 @@ cookiecutter https://github.com/sanders41/cookiecutter-fastapi-meilisearch
 
 You will be asked to fill in the following information:
 
-- project_name: The name of the project
-- project_slug: The development friendly name of the project. By default, based on the project name
-- project_description: A short discription of the purpose of the project [Optional]
-- creator: The full name of the project creator
-- creator_email: The email address for the creator
-- license: The license to use for the project. Select "No license" if no license should be included
-- copyright_year: The year to use for the copyright year in the license file. Required for MIT and GNU General Public License v3.0 licenses
-- python_version: The version of Python that can be used for the project. By default 3.10 will be used.
-- tox_python_version: The version of Python that tox should use for testing. By default py38, py39 is used
-- max_line_length: The maximum allowed line length. By default 100 is used
-- use_dependabot: Adds a GitHub action for dependabot: Default = True
-- use_release_drafter: Adds GitHub action to automatically generate change logs. Default = True
-- meilisearch_url: The URL for the MeiliSearch instance. Note: if the url is `localhost` and the provided
-  docker-compose file is being used set this value to `https://meilisearch:7700`.
-- meilisearch_api_key: The API key for the MeiliSearch instance
+- `project_name`: The name of the project
+- `project_slug`: The development friendly name of the project. By default, based on the project name
+- `project_description`: A short discription of the purpose of the project [Optional]
+- `creator`: The full name of the project creator
+- `creator_email`: The email address for the creator
+- `license`: The license to use for the project. Select "No license" if no license should be included
+- `copyright_year`: The year to use for the copyright year in the license file. Required for MIT and GNU General Public License v3.0 licenses
+- `python_version`: The version of Python that can be used for the project. By default 3.10 will be used.
+- `tox_python_version`: The version of Python that tox should use for testing. By default py38, py39 is used
+- `max_line_length`: The maximum allowed line length. By default 100 is used
+- `use_dependabot`: Adds a GitHub action for dependabot: Default = True
+- `use_release_drafter`: Adds GitHub action to automatically generate change logs. Default = True
+- `meilisearch_url`: The URL for the MeiliSearch instance. Note: if the url is `localhost` and the provided
+   docker-compose file is being used set this value to `https://meilisearch:7700`.
+- `meilisearch_api_key`: The API key for the MeiliSearch instance
 
 Next install the dependencies
 
