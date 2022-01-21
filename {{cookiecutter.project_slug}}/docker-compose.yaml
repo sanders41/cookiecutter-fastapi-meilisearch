@@ -16,9 +16,8 @@ services:
       context: .
       dockerfile: Dockerfile
   meilisearch:
-    image: getmeili/meilisearch:v0.24.0
+    image: getmeili/meilisearch:v0.25.0
     restart: unless-stopped
-    user: root
     ports:
       - "7700:7700"
     volumes:

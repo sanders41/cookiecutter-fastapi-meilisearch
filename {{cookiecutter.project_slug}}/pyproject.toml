@@ -2,7 +2,7 @@
 name = "cookiecutter-fastapi-meilisearch"
 version = "0.1.0"
 description = "Cookiecutter template to start a FastAPI project with MeiliSearch built in"
-authors = ["Paul Sanders <psanders1@gmail.com>"]
+authors = ["{{ cookiecutter.creator }} <{{ cookiecutter.creator_email }}>"]
 {% if cookiecutter.license != "No License" -%}
 license = "{{ cookiecutter.license }}"
 {% endif -%}
@@ -11,19 +11,19 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_version }}"
 camel-converter = "^1.0.3"
-fastapi = "^0.70.0"
+fastapi = "^0.72.0"
 gunicorn = "^20.1.0"
-meilisearch-fastapi = "^0.11.0"
-pydantic = "^1.8.2"
-uvicorn = {version = "^0.15.0", extras = ["standard"]}
+meilisearch-fastapi = "^0.12.2"
+pydantic = "^1.9.0"
+uvicorn = {version = "^0.17.0", extras = ["standard"]}
 
 [tool.poetry.dev-dependencies]
 black = "^21.12b0"
 flake8 = "^4.0.1"
-httpx = "^0.21.1"
+httpx = "^0.21.3"
 isort = "^5.10.1"
-mypy = "^0.930"
-pre-commit = "^2.16.0"
+mypy = "^0.931"
+pre-commit = "^2.17.0"
 pytest = "^6.2.5"
 pytest-asyncio = "^0.16.0"
 pytest-cov = "^3.0.0"
