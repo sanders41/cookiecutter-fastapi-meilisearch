@@ -63,4 +63,4 @@ log_data = {
     "host": host,
     "port": port,
 }
-print(json.dumps(log_data))  # noqa: T001
+print(json.dumps(log_data))  # noqa: T201
